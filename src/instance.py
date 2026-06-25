@@ -23,6 +23,7 @@ Objetivos:
 """
 from __future__ import annotations
 import numpy as np
+from pathlib import Path
 from dataclasses import dataclass
 
 
@@ -154,7 +155,7 @@ def evaluate(perm: list[int], inst: VRPTWInstance) -> dict:
 
 
 if __name__ == "__main__":
-    inst = load_solomon_instance("/home/claude/vrp_project/data/C101.txt", n_customers=25)
+    inst = load_solomon_instance(str(Path(__file__).resolve().parent.parent / "data" / "C101.txt"), n_customers=25)
     print(f"Instância: {inst.name} | clientes: {inst.n_customers} | capacidade: {inst.capacity}")
     perm = list(range(1, inst.n_customers + 1))
     res = evaluate(perm, inst)

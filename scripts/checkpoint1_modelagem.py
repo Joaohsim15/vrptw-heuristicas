@@ -10,7 +10,9 @@ Entrega exigida:
 Rode com:  python3 scripts/checkpoint1_modelagem.py
 """
 import sys, csv
-sys.path.insert(0, "/home/claude/vrp_project/src")
+from pathlib import Path
+BASE_DIR = Path(__file__).resolve().parent.parent  # raiz do repositório
+sys.path.insert(0, str(BASE_DIR / "src"))
 import numpy as np
 
 from instance import load_solomon_instance, evaluate
@@ -18,8 +20,8 @@ from baseline import clarke_wright, routes_to_perm
 from ga import run_ga
 from utils import plot_convergence, plot_routes
 
-DATA = "/home/claude/vrp_project/data/C101.txt"
-RESULTS = "/home/claude/vrp_project/results"
+DATA = str(BASE_DIR / "data" / "C101.txt")
+RESULTS = str(BASE_DIR / "results")
 N_CUSTOMERS = 25
 SEEDS = [1, 2, 3, 4, 5]
 

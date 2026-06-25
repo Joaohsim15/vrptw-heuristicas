@@ -21,6 +21,7 @@ GA single-objective, em vez de 100% aleatória — ver `seed_solutions`.
 """
 from __future__ import annotations
 import numpy as np
+from pathlib import Path
 from pymoo.core.problem import Problem
 from pymoo.core.sampling import Sampling
 from pymoo.algorithms.moo.nsga2 import NSGA2
@@ -103,7 +104,7 @@ def run_nsga2(inst: VRPTWInstance, seed: int = 1, pop_size: int = 120, n_gen: in
 
 
 if __name__ == "__main__":
-    inst = load_solomon_instance("/home/claude/vrp_project/data/C101.txt", n_customers=25)
+    inst = load_solomon_instance(str(Path(__file__).resolve().parent.parent / "data" / "C101.txt"), n_customers=25)
     print(f"Instância: {inst.name} ({inst.n_customers} clientes)\n")
     print("Rodando NSGA-II (f1=distância, f2=veículos), população aleatória...")
     res, hist = run_nsga2(inst, seed=1, pop_size=120, n_gen=150)

@@ -4,7 +4,9 @@ Roda de ponta a ponta os 3 checkpoints e salva todos os artefatos
 (CSV + figuras) em results/, usados pelos notebooks e pelo relatório técnico.
 """
 import sys, json, csv
-sys.path.insert(0, "/home/claude/vrp_project/src")
+from pathlib import Path
+BASE_DIR = Path(__file__).resolve().parent.parent  # raiz do repositório
+sys.path.insert(0, str(BASE_DIR / "src"))
 import numpy as np
 
 from instance import load_solomon_instance, evaluate, route_distance
@@ -13,8 +15,8 @@ from ga import run_ga
 from nsga2 import run_nsga2
 from utils import plot_convergence, plot_pareto_front, plot_routes
 
-RESULTS = "/home/claude/vrp_project/results"
-DATA = "/home/claude/vrp_project/data/C101.txt"
+RESULTS = str(BASE_DIR / "results")
+DATA = str(BASE_DIR / "data" / "C101.txt")
 N_CUSTOMERS = 25
 SEEDS = [1, 2, 3, 4, 5]
 

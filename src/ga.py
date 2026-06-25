@@ -19,6 +19,7 @@ Operadores:
 from __future__ import annotations
 import random
 import numpy as np
+from pathlib import Path
 from deap import base, creator, tools
 
 from instance import VRPTWInstance, load_solomon_instance, evaluate
@@ -111,7 +112,7 @@ def run_ga(inst: VRPTWInstance, seed: int, pop_size: int = 120, ngen: int = 150,
 
 
 if __name__ == "__main__":
-    inst = load_solomon_instance("/home/claude/vrp_project/data/C101.txt", n_customers=25)
+    inst = load_solomon_instance(str(Path(__file__).resolve().parent.parent / "data" / "C101.txt"), n_customers=25)
     print(f"Instância: {inst.name} ({inst.n_customers} clientes)\n")
 
     seeds = [1, 2, 3, 4, 5]

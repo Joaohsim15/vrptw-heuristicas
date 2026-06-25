@@ -11,6 +11,7 @@ Usada como baseline (R4) e também como ponto de partida candidato para o
 diferencial de warm-start (D2) no checkpoint 3.
 """
 from __future__ import annotations
+from pathlib import Path
 from instance import VRPTWInstance, route_distance
 
 
@@ -81,7 +82,7 @@ def routes_to_perm(routes: list[list[int]]) -> list[int]:
 if __name__ == "__main__":
     from instance import load_solomon_instance, evaluate
 
-    inst = load_solomon_instance("/home/claude/vrp_project/data/C101.txt", n_customers=25)
+    inst = load_solomon_instance(str(Path(__file__).resolve().parent.parent / "data" / "C101.txt"), n_customers=25)
     routes = clarke_wright(inst)
     total_dist = sum(route_distance(r, inst) for r in routes)
     print(f"[Baseline Clarke-Wright] rotas = {len(routes)} | distância total = {total_dist:.2f}")
